@@ -1,12 +1,30 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { Layer } from "ol/layer";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
+import { GeoJSON } from "ol/format";
 
 export function KommuneLayerCheckBox({
   setLayers,
 }: {
   setLayers: Dispatch<SetStateAction<Layer[]>>;
 }) {
+  const kommuneLayer = useMemo(
+    () =>
+      new VectorLayer({
+        source: new VectorSource({
+          url: "/kommuner.json",
+          format: new GeoJSON(),
+        }),
+      }),
+    [],
+  );
   const [checked, setChecked] = useState(false);
+
+  /*useEffect(() => {
+          setLayers((old) => [...old, kommuneLayer]);
+        }, [checked]);*/
+
   return (
     <div>
       <label>
