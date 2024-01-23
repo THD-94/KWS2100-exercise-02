@@ -1,7 +1,9 @@
 {
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "npm run check &&  vite build",
+    "check": "prettier --check . && tsc --noEmit",
+    "prettier": "prettier --write ."
   },
   "devDependencies": {
     "vite": "^5.0.12",
