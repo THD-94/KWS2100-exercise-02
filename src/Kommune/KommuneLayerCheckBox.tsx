@@ -1,12 +1,18 @@
-import React from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
+import {Layer} from "ol/layer";
 
-export function KommuneLayerCheckBox() {
-  return (
-    <div>
-      <label>
-        <input type={"checkbox"} />
-        Show kommuner
-      </label>
-    </div>
-  );
+export function KommuneLayerCheckBox({setLayers}: {
+    setLayers: Dispatch<SetStateAction<Layer[]>>
+}) {
+    const [checked, setChecked] = useState(false)
+    return (
+        <div>
+            <label>
+                <input type={"checkbox"}
+                       checked={checked}
+                       onChange={e => setChecked(e.target.checked)}/>
+                {checked ? "Hide" : "Show"} kommuner
+            </label>
+        </div>
+    );
 }

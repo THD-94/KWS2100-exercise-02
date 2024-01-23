@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, useEffect, useState } from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Map, View } from "ol";
 import TileLayer from "ol/layer/Tile";
 import { OSM } from "ol/source";
@@ -40,7 +40,7 @@ export function MapApplication() {
         <h1>Map Application</h1>
       </header>
       <nav>
-        <KommuneLayerCheckBox />
+        <KommuneLayerCheckBox setLayers={setLayers} />
       </nav>
       <main ref={mapRef}></main>
     </>
