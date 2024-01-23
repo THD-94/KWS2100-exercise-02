@@ -1,21 +1,34 @@
-import React, {MutableRefObject, useEffect} from "react";
+import React, {MutableRefObject, useRef, useEffect} from "react";
 import "./MapApplication.css"
-import {Map} from "ol";
-import {useRef} from "react/index";
+import {Map, View} from "ol";
+import TileLayer from "ol/layer/Tile";
+import {OSM} from "ol/source";
+import {useGeographic} from "ol/proj";
 
-const map = new Map()
-function MapAppliction() {
-    const mapref = useRef() as MutableRefObject<HTMLAnchorElement>
+useGeographic()
+
+const map = new Map({
+    layers: [
+        new TileLayer({
+            source: new OSM()
+        })
+    ],
+    view: new View({
+        center: [10, 59], zoom: 10
+    })
+})
+function MapApplication() {
+    const mapRef = useRef() as MutableRefObject<HTMLAnchorElement>
 
     useEffect(()=>{
-        map.setTarget(mapref.current)
+        map.setTarget(mapRef.current)
     }, [])
     return <>
         <header>
             <h1>Map Application</h1>
         </header>
         <nav>Actions</nav>
-        <main ref={mapref}>Here is the map</main>
+        <main ref={mapRef}>Here is the map</main>
     </>
 }
-export default MapAppliction;
+export default MapApplication;
