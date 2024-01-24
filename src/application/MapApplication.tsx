@@ -15,7 +15,7 @@ useGeographic();
 const map = new Map({
   view: new View({
     center: [10, 59],
-    zoom: 10,
+    zoom: 8,
   }),
 });
 

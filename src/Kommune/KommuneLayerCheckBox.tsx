@@ -19,7 +19,7 @@ export function KommuneLayerCheckBox({
     () =>
       new VectorLayer({
         source: new VectorSource({
-          url: "/kommuner.json",
+          url: "/KWS2100-exercise-02/kommuner.json",
           format: new GeoJSON(),
         }),
       }),
