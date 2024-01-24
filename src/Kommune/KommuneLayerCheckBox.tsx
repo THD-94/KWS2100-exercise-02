@@ -21,9 +21,10 @@ type KommuneProperties = {
     navn: string;
   }[];
 };
-type KommuneFeature = Feature<Polygon> & {
+type KommuneFeature = {
   getProperties(): KommuneProperties;
-};
+} & Feature<Polygon>;
+
 const kommuneSource = new VectorSource<KommuneFeature>({
   url: "/KWS2100-exercise-02/kommuner.json",
   format: new GeoJSON(),
@@ -86,20 +87,15 @@ export function KommuneLayerCheckBox({
         {checked ? "Hide" : "Show"} kommuner
       </label>
       <div ref={overlayRef} className={"kommune-overlay"}>
-        {
-          !(
-            !setSelectedKommune ||
-            !(
-              <>
-                {
-                  (
-                    selectedKommune?.getProperties() as KommuneProperties
-                  ).navn.find((n) => n.sprak === "nor")!.navn
-                }
-              </>
-            )
-          )
-        }
+        {selectedKommune && (
+          <>
+            {
+              selectedKommune
+                .getProperties()
+                .navn.find((n) => n.sprak === "nor")!.navn
+            }
+          </>
+        )}
       </div>
     </div>
   );
