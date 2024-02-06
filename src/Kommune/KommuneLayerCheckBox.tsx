@@ -26,7 +26,7 @@ type KommuneFeature = {
 } & Feature<Polygon>;
 
 const kommuneSource = new VectorSource<KommuneFeature>({
-  url: "/KWS2100-exercise-02/kommuner.json",
+  url: "/KWS2100-exercise-02-and-03/kommuner.json",
   format: new GeoJSON(),
 });
 const kommuneLayer = new VectorLayer({
